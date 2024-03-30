@@ -1,14 +1,8 @@
 {
-  "builds": [
-    {
-      "src": "__init__.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "__init__.py"
-    }
-  ]
+  "version": 2,
+  "builds": [{ "src": "__init__.py", "use": "@vercel/python" }],
+  "routes": [{ "src": "/(.*)", "dest": "/__init__.py" }],
+  "env": {
+    "APP_MODULE": "__init__:app"
+  }
 }
