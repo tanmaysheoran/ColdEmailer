@@ -1,3 +1,4 @@
+azure-functions
 pymongo
 google-generativeai
 google-api-python-client
