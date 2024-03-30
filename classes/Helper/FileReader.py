@@ -1,5 +1,6 @@
-import fitz
+import PyPDF2
 import re
+import io
 
 
 class FileReader:
@@ -7,8 +8,21 @@ class FileReader:
         self.file = file
 
     def convert_pdf_to_text(self):
-        self.doc = "".join(
-            [page.get_text() for page in fitz.open("pdf", self.file)])
+        text = ""
+        try:
+            # Create a file-like object from the PDF bytes
+            pdf_file = io.BytesIO(self.file)
+            
+            # Create a PDF file reader object
+            pdf_reader = PyPDF2.PdfFileReader(pdf_file)
+            
+            # Iterate through each page in the PDF
+            for page_num in range(pdf_reader.numPages):
+                # Extract text from the page
+                text += pdf_reader.getPage(page_num).extractText()
+        except Exception as e:
+            print("Error:", e)
+        return text
 
     def process_pdf(self):
         text = self.doc
