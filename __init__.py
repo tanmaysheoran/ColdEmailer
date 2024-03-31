@@ -21,7 +21,7 @@ MongoDBCollectionManager().create_collections(collections_to_iniliaze)
 app = FastAPI(title="thehightabl.api", name="thehightabl.api", version="beta")
 api_v1 = "/api/v1"
 
-origins = ["https://www.thehightabl.com"]
+origins = ["https://www.thehightabl.com", "http://localhost:3000"]
 
 app.add_middleware(
     CORSMiddleware,
