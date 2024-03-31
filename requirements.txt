@@ -19,3 +19,5 @@ gunicorn
 python-dotenv
 cryptography
 paramiko
+uvloop
+httptools
