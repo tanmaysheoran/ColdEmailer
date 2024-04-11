@@ -36,7 +36,7 @@ def decode_token(token: str) -> Token:
 async def decode_auth_token(token: Annotated[HTTPAuthorizationCredentials, Depends(oauth2_scheme)]) -> Token:
     decoded_token = decode_token(token.credentials)
     if decoded_token is None:
-        raise ValueError("Invalid token")
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Invalid token")
     if decoded_token.session_id in invalidated_sessions:
-        raise HTTPException(status.HTTP_401_UNAUTHORIZED, "Session expired")
+        raise HTTPException(status.HTTP_403_FORBIDDEN, "Session expired")
     return decoded_token

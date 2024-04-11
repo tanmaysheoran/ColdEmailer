@@ -23,6 +23,12 @@ def verify_user_wtih_token(token):
     token = ObjectId(token)
     return verify_user(token)
 
+@router.get("/validate/token", status_code=status.HTTP_200_OK)
+def validate_token(token: Token = Depends(decode_auth_token)):
+    if token:
+        return True
+    else:
+        return False
 
 @router.post("/login", status_code=status.HTTP_200_OK)
 def login_user(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
