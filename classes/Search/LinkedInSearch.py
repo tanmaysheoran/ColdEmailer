@@ -40,10 +40,10 @@ class LinkedInSearch():
         """
         Performs the LinkedIn search based on the provided parameters.
         """
-        linkedin_poeple_search = Search(
+        linkedin_people_search = Search(
             "LINKEDIN_SEARCH_ENGINE_ID", pages_to_get=self.pages, query=self.query, company=self.company, task_id=self.task.id)
-        linkedin_poeple_search.search()
-        self.results = linkedin_poeple_search.results
+        linkedin_people_search.search()
+        self.results = linkedin_people_search.results
 
     def extract_people_from_search(self, company_website: str) -> list[Person]:
         """

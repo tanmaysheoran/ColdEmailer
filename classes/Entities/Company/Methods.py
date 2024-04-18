@@ -45,5 +45,5 @@ def save(company: Company) -> bool:
     data.pop("_id")
     data.pop("people")
     update_query = {"$set": data, "$addToSet": {
-        "poeple": {"$each": [item.model_dump() for item in company.people]}}}
+        "people": {"$each": [item.model_dump() for item in company.people]}}}
     return mongoDBManager.update_document(new_data={"id": ObjectId(company.id)}, update_query=update_query, upsert=True)
